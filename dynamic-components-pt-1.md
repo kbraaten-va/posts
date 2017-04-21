@@ -17,7 +17,7 @@ We begin with a basic component in `src/app.ts`:
   selector: 'my-app',
   template: `
   <h2>Hello World</h2>
-  `,
+  `
 })
 export class App {}
 ```
