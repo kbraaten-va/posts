@@ -1,4 +1,4 @@
-## Part One: Programatically Creating A Component
+# Part One: Programatically Creating A Component
 
 You can follow along by modifying the code [here](http://embed.plnkr.co/iwIyVbaBuuF5ObQetsaN/), as well as view the finished code [here](http://embed.plnkr.co/eRx5vyf1eAvGlV0u82Tp/).
 
@@ -9,7 +9,7 @@ In order to programatically create a component, we require three things:
 
 Let's walk through these in detail...
 
-### 1. ViewContainerRef
+## 1. ViewContainerRef
 
 We begin with a basic component in `src/app.ts`:
 ```
@@ -58,7 +58,7 @@ Now in DevTools we will see our container is a `ViewContainerRef` ☺️
 
 [`ViewContainerRef`](https://angular.io/docs/ts/latest/api/core/index/ViewContainerRef-class.html) provides a series of methods, but the one we are interested in is `createComponent`. As you can see in the signature, in order to call this method, we need to pass in a `ComponentFactory`. Which leads us to our second requirement...
 
-### 2. ComponentFactory
+## 2. ComponentFactory
 
 In order to create a [`ComponentFactory`](https://angular.io/docs/ts/latest/api/core/index/ComponentFactory-class.html), we will make use of the [`ComponentFactoryResolver`](https://angular.io/docs/ts/latest/api/core/index/ComponentFactoryResolver-class.html) service. I wouldn't bother on clicking the link to the documentation, there isn't much there 😉. Basically, we'll just pass in the type of component we want it to resolve. Speaking of which, let's quickly create (and declare) a component for that...
 
@@ -91,7 +91,7 @@ export class App implements AfterContentInit {
 
 We are almost there, but this will raise an error, which leads us to our third requirement.
 
-### 3. entryComponent
+## 3. entryComponent
 
 If we open DevTools we will see the folling error:
 
@@ -115,7 +115,7 @@ When compiling, Angular doesn't include components that aren't referenced by the
 
 Declaring a component as an entry component essentially tells Angular, somewhere in our code we will be using this component so please include it for us. Angular will also create a `ComponentFactory` and store it in the `ComponentFactoryResolver` allowing us to programatically create them.
 
-### Summary
+## Summary
 
 * The `ViewContainerRef` creates a component from a `ComponentFactory`
 * The `CompnentFactory` for a component is resolved by the `ComponentFactoryResolver`
@@ -123,7 +123,7 @@ Declaring a component as an entry component essentially tells Angular, somewhere
 
 In Part 2, we will further explore this technique by seeing how we leverage programatic component creation from within a `directive` in `va-table` to create create different types of cells.
 
-### References
+## References
 1. https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html
 2. https://angular.io/docs/ts/latest/api/core/index/AfterContentInit-interface.html
 3. https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html
