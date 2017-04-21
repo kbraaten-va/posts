@@ -44,22 +44,23 @@ export class App implements AfterContentInit {
 
 1. [`ViewChild`](https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html) allows us to get the first element matching the selector from the view DOM, as referenced in our template by `#container`.
 
-2. The `AfterContentInit` lifecycle hook is called after our content has been rendered, which means our `ViewChild` will be set.
+2. The [`AfterContentInit`](https://angular.io/docs/ts/latest/api/core/index/AfterContentInit-interface.html) lifecycle hook is called after our content has been rendered, which means our `ViewChild` will be set.
 
-If we open up DevTools we will see that `container` is currently of type `ElementRef`, this limits us to native-type interactions. As alluded to, what we want is a `ViewContainerRef`.
+If we open up DevTools we will see that `container` is currently of type [`ElementRef`](https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html), this limits us to native-type interactions. As alluded to, what we want is a `ViewContainerRef`.
 
-Luckily, `ViewChild` makes this easy for us to retrieve. `ViewChild` has a property `read` that allows us to get a different token from the queried element, in our case, `ViewContainerRef`. To make use of this, we simply change our `@ViewChild` declaration:
+Luckily, `ViewChild` makes this easy for us to retrieve. `ViewChild` has a property `read` that allows us to get a different token from the queried element, in our case, `ViewContainerRef`. To make use of this, we simply change our `@ViewChild` declaration (don't forget to import `ViewContainerRef`):
 
 `@ViewChild('container', {read:ViewContainerRef}) container;`
 
 Now in DevTools we will see our container is a `ViewContainerRef` ☺️
+
 ![alt text](http://i.imgur.com/RE8Bwvr.png?1)
 
-[`ViewContainerRef` provides a series of methods](https://angular.io/docs/ts/latest/api/core/index/ViewContainerRef-class.html), but the one we are interested in is `createComponent`. As you can see in the signature, in order to call this method, we need to pass in a `ComponentFactory`. Which leads us to our second requirement...
+[`ViewContainerRef`](https://angular.io/docs/ts/latest/api/core/index/ViewContainerRef-class.html) provides a series of methods, but the one we are interested in is `createComponent`. As you can see in the signature, in order to call this method, we need to pass in a `ComponentFactory`. Which leads us to our second requirement...
 
 ### 2. ComponentFactory
 
-In order to create a `ComponentFactory`, we will make use of the [`ComponentFactoryResolver`](https://angular.io/docs/ts/latest/api/core/index/ComponentFactoryResolver-class.html) service. I wouldn't bother on clicking the link to the documentation, there isn't much there 😉. Basically, we'll just pass in the type of component we want it to resolve. Speaking of which, let's quickly create (and declare) a component for that...
+In order to create a [`ComponentFactory`](https://angular.io/docs/ts/latest/api/core/index/ComponentFactory-class.html), we will make use of the [`ComponentFactoryResolver`](https://angular.io/docs/ts/latest/api/core/index/ComponentFactoryResolver-class.html) service. I wouldn't bother on clicking the link to the documentation, there isn't much there 😉. Basically, we'll just pass in the type of component we want it to resolve. Speaking of which, let's quickly create (and declare) a component for that...
 
 ```
 @Component({
@@ -72,6 +73,7 @@ declarations: [ App, GreetingComponent ],
 
 Then in our app component:
 ```
+import {..., AfterContentInit, ComponentFactoryResolver} from '@angular/core'
 export class App implements AfterContentInit {
   @ViewChild('container', {read:ViewContainerRef}) container;
   
@@ -111,7 +113,7 @@ Tada, everything works! So what exactly does declaring our component in `entryCo
 
 When compiling, Angular doesn't include components that aren't referenced by their `selector` in the templates. So even though our `GreetingComponent` was declared, Angular was saving on bundle size by ignoring it since it didn't think it was in use.
 
-Declaring a component as an entry component essentially tells Angular, somewhere in our code we will be using this component so please include it for us. Angular will also create us `ComponentFactory` and store it in the `ComponentFactoryResolver` to allow us to programatically create them.
+Declaring a component as an entry component essentially tells Angular, somewhere in our code we will be using this component so please include it for us. Angular will also create a `ComponentFactory` and store it in the `ComponentFactoryResolver` allowing us to programatically create them.
 
 ### Summary
 
@@ -120,3 +122,11 @@ Declaring a component as an entry component essentially tells Angular, somewhere
 * The component we are resolving for must be declared as an `entryComponent`
 
 In Part 2, we will further explore this technique by seeing how we leverage programatic component creation from within a `directive` in `va-table` to create create different types of cells.
+
+### References
+1. https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html
+2. https://angular.io/docs/ts/latest/api/core/index/AfterContentInit-interface.html
+3. https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html
+4. https://angular.io/docs/ts/latest/api/core/index/ViewContainerRef-class.html
+5. https://angular.io/docs/ts/latest/api/core/index/ComponentFactory-class.html
+6. https://angular.io/docs/ts/latest/api/core/index/ComponentFactoryResolver-class.html
