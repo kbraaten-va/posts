@@ -1,13 +1,17 @@
-# Part One: Programatically Creating A Component
+# Part One: Programatically Creating An Angular Component
 
-You can follow along by modifying the code [here](http://embed.plnkr.co/iwIyVbaBuuF5ObQetsaN/), as well as view the finished code [here](http://embed.plnkr.co/eRx5vyf1eAvGlV0u82Tp/).
+## Overview
 
 In order to programatically create a component, we require three things:
 1. ViewContainerRef
 2. ComponentFactory
 3. entryComponent
 
-Let's walk through these in detail...
+We will access a `ViewContainerRef` and use it to create our component using a `ComponentFactory`. We get a component's `ComponentFactory` using the `ComponentFactoryResolver` service. We'll need to declare our component as an `entryComponent` so Angular knows to include it in our bundle.
+
+What does all that mean? Let's walk through it in detail...
+
+Note: You can follow along by modifying the code [here](http://embed.plnkr.co/iwIyVbaBuuF5ObQetsaN/), as well as view the finished code [here](http://embed.plnkr.co/eRx5vyf1eAvGlV0u82Tp/).
 
 ## 1. ViewContainerRef
 
@@ -60,7 +64,7 @@ Now in DevTools we will see our container is a `ViewContainerRef` ☺️
 
 ## 2. ComponentFactory
 
-In order to create a [`ComponentFactory`](https://angular.io/docs/ts/latest/api/core/index/ComponentFactory-class.html), we will make use of the [`ComponentFactoryResolver`](https://angular.io/docs/ts/latest/api/core/index/ComponentFactoryResolver-class.html) service. I wouldn't bother on clicking the link to the documentation, there isn't much there 😉. Basically, we'll just pass in the type of component we want it to resolve. Speaking of which, let's quickly create (and declare) a component for that...
+In order to create a [`ComponentFactory`](https://angular.io/docs/ts/latest/api/core/index/ComponentFactory-class.html), we will make use of the [`ComponentFactoryResolver`](https://angular.io/docs/ts/latest/api/core/index/ComponentFactoryResolver-class.html) service. Basically, we'll just pass in the type of component we want it to resolve. Speaking of which, let's quickly create (and declare) a component for that...
 
 ```
 @Component({
