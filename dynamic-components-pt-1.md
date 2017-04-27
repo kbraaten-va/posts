@@ -1,8 +1,8 @@
-# Part One: Programatically Creating An Angular Component
+# Part One: Dynamically Creating An Angular Component
 
 ## Overview
 
-In order to programatically create a component, we require three things:
+In order to dynamically create a component, we require three things:
 1. ViewContainerRef
 2. ComponentFactory
 3. entryComponent
@@ -26,7 +26,7 @@ We begin with a basic component in `src/app.ts`:
 export class App {}
 ```
 
-Let's start by adding a `div` onto which we will be able to programatically create our component.
+Let's start by adding a `div` onto which we will be able to create our component.
 
 ```
 import {..., ViewChild, AfterContentInit} from '@angular/core'
@@ -117,7 +117,7 @@ Tada, everything works! So what exactly does declaring our component in `entryCo
 
 When compiling, Angular doesn't include components that aren't referenced by their `selector` in the templates. So even though our `GreetingComponent` was declared, Angular was saving on bundle size by ignoring it since it didn't think it was in use.
 
-Declaring a component as an entry component essentially tells Angular, somewhere in our code we will be using this component so please include it for us. Angular will also create a `ComponentFactory` and store it in the `ComponentFactoryResolver` allowing us to programatically create them.
+Declaring a component as an entry component essentially tells Angular, somewhere in our code we will be using this component so please include it for us. Angular will also create a `ComponentFactory` and store it in the `ComponentFactoryResolver` allowing us to dynamically create them.
 
 ## Summary
 
@@ -125,7 +125,7 @@ Declaring a component as an entry component essentially tells Angular, somewhere
 * The `CompnentFactory` for a component is resolved by the `ComponentFactoryResolver`
 * The component we are resolving for must be declared as an `entryComponent`
 
-In Part 2, we will further explore this technique by seeing how we leverage programatic component creation from within a `directive` in `va-table` to create create different types of cells.
+In Part 2, we will further explore this technique by seeing how we leverage dynamic component creation from within a `directive` in `va-table` to create create different types of cells.
 
 ## References
 1. https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html
