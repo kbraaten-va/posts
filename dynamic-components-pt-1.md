@@ -9,12 +9,11 @@ In order to dynamically create a component, we require three things:
 
 We will access a `ViewContainerRef` and use it to create our component using a `ComponentFactory`. We get a component's `ComponentFactory` using the `ComponentFactoryResolver` service. We'll need to declare our component as an `entryComponent` so Angular knows to include it in our bundle.
 
-What does all that mean? Let's walk through it in detail...
+What does all that mean? Let's walk through it in detail.
 
 Note:
-You can follow along by modifying the code [here](https://github.com/kbraaten-va/dynamic-comp-1/tree/seed)
-You can view the finished code [here](http://embed.plnkr.co/eRx5vyf1eAvGlV0u82Tp/)
-Edit the post [here](https://github.com/kbraaten-va/posts/blob/master/dynamic-components-pt-1.md)
+
+You can follow along by modifying the code [here](https://github.com/kbraaten-va/dynamic-comp-1/tree/seed), view the finished code [here](http://embed.plnkr.co/eRx5vyf1eAvGlV0u82Tp/), or edit the post [here](https://github.com/kbraaten-va/posts/blob/master/dynamic-components-pt-1.md).
 
 ## 1. ViewContainerRef
 
