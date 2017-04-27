@@ -29,7 +29,7 @@ export class App {}
 Let's start by adding a `div` onto which we will be able to programatically create our component.
 
 ```
-import {..., ViewChild} from '@angular/core'
+import {..., ViewChild, AfterContentInit} from '@angular/core'
 @Component({
   selector: 'my-app',
   template: `
