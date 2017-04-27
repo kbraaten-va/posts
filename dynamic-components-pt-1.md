@@ -11,7 +11,10 @@ We will access a `ViewContainerRef` and use it to create our component using a `
 
 What does all that mean? Let's walk through it in detail...
 
-Note: You can follow along by modifying the code [here](https://github.com/kbraaten-va/dynamic-comp-1/tree/seed), as well as view the finished code [here](http://embed.plnkr.co/eRx5vyf1eAvGlV0u82Tp/).
+Note:
+You can follow along by modifying the code [here](https://github.com/kbraaten-va/dynamic-comp-1/tree/seed)
+You can view the finished code [here](http://embed.plnkr.co/eRx5vyf1eAvGlV0u82Tp/)
+Edit the post [here](https://github.com/kbraaten-va/posts/blob/master/dynamic-components-pt-1.md)
 
 ## 1. ViewContainerRef
 
