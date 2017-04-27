@@ -125,7 +125,7 @@ Declaring a component as an entry component essentially tells Angular, somewhere
 * The `CompnentFactory` for a component is resolved by the `ComponentFactoryResolver`
 * The component we are resolving for must be declared as an `entryComponent`
 
-In Part 2, we will further explore this technique by seeing how we leverage dynamic component creation from within a `directive` in `va-table` to create create different types of cells.
+In Part 2, we will further explore this technique by seeing how we leverage dynamic component creation from within a `directive` in `va-table` to dynamically create different types of cells.
 
 ## References
 1. https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html
